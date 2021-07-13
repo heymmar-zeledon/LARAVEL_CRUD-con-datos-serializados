@@ -31,7 +31,7 @@
         <div class="form-group">
             <label>Foto</label>
             <br>
-            <img src="{{ asset('/storage/'. $alumno->foto) }}" alt='foto del alumno' width='100' height='80'/>
+            <img src="/imagenesalum/{{$alumno->foto}}" alt='foto del alumno' width='100' height='80'/>
             <input type="file" class="form-control" name="foto" id="foto" require accept="image/*">
         </div>
         <button type="submit" name="btnActualizar" value="btAlumno" class="btn btn-primary">Actualizar</button>

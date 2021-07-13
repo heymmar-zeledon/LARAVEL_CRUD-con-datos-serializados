@@ -15,7 +15,7 @@
         @foreach($listado as $data)
             <tr>
                 <td align='center'> 
-                <img src="{{ asset('/storage/'. $data->foto) }}" alt='foto del alumno' width='120' height='112'/>
+                <img src="/imagenesalum/{{$data->foto}}" alt='foto del alumno' width='120' height='112'/>
                 </td>
                 <td> <b>No. de Carnet:</b> {{ $data->carnet }} <br/> 
                     Nombre: {{ $data->nombre }} <br/> 

@@ -30,7 +30,7 @@ class AlumnoController extends Controller
           //obtenemos el nombre del archivo
             $nombrearchivofoto = $foto->getClientOriginalName();
           //indicamos que queremos guardar un nuevo archivo en el disco local
-            Storage::disk('public')->put($nombrearchivofoto,  File::get($foto),'public');
+            $foto->move(public_path().'/imagenesalum/',$nombrearchivofoto);
 
             $al = new stdClass();
             $al->email = $request->input("a-email");
@@ -73,10 +73,9 @@ class AlumnoController extends Controller
             {
                 if($lista[$i]->carnet == $carnet)
                 {
-                    if(Storage::delete('/public/'.$lista[$i]->foto))
-                    {
-                        unset($lista[$i]);
-                    }
+                    $file_path = public_path().'/imagenesalum/'.$lista[$i]->foto;
+                    unlink($file_path);
+                    unset($lista[$i]);
                     $lista = array_values($lista);
                     break;
                 }
@@ -113,10 +112,10 @@ class AlumnoController extends Controller
                 {
                     if($request2->hasFile("foto"))
                     {
-                        Storage::delete(['/public/'.$lista[$i]->foto]);
+                        $file_path = public_path().'/imagenesalum/'.$lista[$i]->foto;
                         $foto = $request2->file("foto");
                         $nombrearchivofoto = $foto->getClientOriginalName();
-                        Storage::disk('public')->put($nombrearchivofoto,  File::get($foto),'public');
+                        $foto->move(public_path().'/imagenesalum/',$nombrearchivofoto);
                     }
                     else
                     {
